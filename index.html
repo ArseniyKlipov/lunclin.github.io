@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUNCLIN — инди-студия</title>
+    <!-- Шрифты и иконки -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (лёгкая смена цветов) ========== */
+        :root {
+            --primary: #4e8b3b;      /* основной цвет студии */
+            --primary-dark: #3a692b;
+            --primary-light: #6dab56;
+            --bg-dark: #0b1309;      /* тёмный фон */
+            --card-bg: #171f14;      /* фон карточек */
+            --text-light: #f0f7ea;
+            --border-color: #2a3623;
+        }
+
+        /* ========== 2. СБРОС И БАЗОВЫЕ СТИЛИ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== 3. ВСПОМОГАТЕЛЬНЫЕ КЛАССЫ ========== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Заголовки */
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+        /* Декоративная полоска под h2 */
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .section-sub {
+            font-size: 1.2rem;
+            color: #cadfc0;
+            margin-bottom: 3rem;
+            max-width: 650px;
+        }
+
+        /* ========== 4. КНОПКИ ========== */
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 40px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--primary);
+            border: 2px solid var(--primary);
+            color: #0f1a0c;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--text-light);
+        }
+        .btn-outline:hover {
+            background: rgba(78, 139, 59, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* ========== 5. ШАПКА (НАВИГАЦИЯ) ========== */
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(12px);
+            background: rgba(15, 25, 12, 0.85);
+            border-bottom: 1px solid rgba(78, 139, 59, 0.3);
+            padding: 18px 0;
+            z-index: 100;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 700;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        /* ========== 6. ГЛАВНЫЙ ЭКРАН (HERO) ========== */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 20% 30%, #142010, #070c05);
+        }
+        .hero-content {
+            max-width: 680px;
+        }
+        .hero h1 {
+            font-size: 4.2rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .hero .accent {
+            color: var(--primary);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #cde5c2;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        /* ========== 7. КАРТОЧКИ "О НАС" (FEATURES) ========== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem 1.5rem;
+            border-radius: 32px;
+            border: 1px solid var(--border-color);
+            transition: 0.25s;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+        }
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+        }
+        .feature-card p {
+            color: #bbcbb2;
+        }
+
+        /* ========== 8. ПРОЕКТЫ / ИГРЫ ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-item {
+            background: #121b0e;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid #2a3623;
+            transition: 0.3s;
+        }
+        /* стиль для контейнера иконки/картинки */
+.project-img {
+    height: 220px;
+    background: linear-gradient(135deg, #2f4525, #1b2a14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px 28px 0 0; /* чтобы скругление совпадало с проектом */
+}
+
+/* стиль для картинки внутри */
+.project-img img {
+    max-width: 85%;
+    max-height: 85%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
+}
+        
+        .project-info {
+            padding: 1.6rem;
+        }
+        .project-info h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-badge {
+            display: inline-block;
+            background: rgba(78, 139, 59, 0.2);
+            color: var(--primary-light);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* ========== 9. КОМАНДА ========== */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: 1.8rem;
+            text-align: center;
+            width: 240px;
+            border: 1px solid var(--border-color);
+        }
+        .team-avatar {
+            font-size: 3.5rem;
+            background: #1e2a18;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border-radius: 60px;
+            color: var(--primary);
+        }
+        .team-card h4 {
+            font-size: 1.3rem;
+        }
+        .team-card p {
+            font-size: 0.9rem;
+            color: #a6c09b;
+        }
+
+        /* ========== 10. КОНТАКТЫ + ФОРМА ========== */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            background: var(--card-bg);
+            border-radius: 48px;
+            padding: 2.5rem;
+            border: 1px solid var(--border-color);
+        }
+        .contact-info {
+            flex: 1;
+        }
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .contact-details {
+            margin: 2rem 0;
+        }
+        .contact-details p {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contact-details i {
+            width: 32px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .social-links a {
+            color: #cce6c0;
+            font-size: 1.8rem;
+            margin-right: 1.5rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        .contact-form {
+            flex: 1;
+            min-width: 260px;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        input, textarea {
+            width: 100%;
+            background: #1c2716;
+            border: 1px solid #36452c;
+            padding: 14px 18px;
+            border-radius: 28px;
+            font-family: inherit;
+            color: white;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        button[type="submit"] {
+            background: var(--primary);
+            border: none;
+            width: 100%;
+            padding: 14px;
+            font-weight: bold;
+            border-radius: 40px;
+            color: #0e170b;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button[type="submit"]:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        /* ========== 11. ПОДВАЛ ========== */
+        footer {
+            background: #081205;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #2a3a1f;
+            font-size: 0.85rem;
+        }
+
+        /* ========== 12. АДАПТИВНОСТЬ (ПЛАНШЕТЫ/ТЕЛЕФОНЫ) ========== */
+        @media (max-width: 780px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .contact-flex {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== ШАПКА ========== -->
+<header>
+    <div class="container navbar">
+        <div class="logo">LUN<span>CLIN</span></div>
+        <div class="nav-links">
+            <a href="#about">О нас</a>
+            <a href="#projects">Игры</a>
+            <a href="#team">Команда</a>
+            <a href="#contact">Контакты</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- ========== БЛОК 1: ГЛАВНЫЙ ЭКРАН (HERO) ========== -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Создаём игры,<br> в которых <span class="accent">оживают эмоции</span></h1>
+            <p>LUNCLIN — молодая инди студия. Мы создаём атмосферные игры, наполненные душой, уникальной механикой и визуальной поэзией.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">Наши проекты</a>
+                <a href="#contact" class="btn btn-outline">Связаться</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== БЛОК 2: О СТУДИИ (ОСОБЕННОСТИ) ========== -->
+    <section id="about">
+    <div class="container">
+        <h2>О нас</h2>
+        <div class="section-sub">LUNCLIN — это молодая студия, которая создаёт атмосферные миры в Roblox и не только.</div>
+        <div class="features-grid">
+            <!-- Карточка 1: Про Roblox и Frostvale RP -->
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-cog"></i></div>
+                <h3>Roblox-разработка</h3>
+                <p>Мы строим уникальные ролевые вселенные — как <strong>Frostvale RP</strong> с зимней атмосферой и кастомными механиками.</p>
+            </div>
+            <!-- Карточка 2: Про хоррор и атмосферу (The Church of Silence) -->
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-church"></i></div>
+                <h3>Психологический хоррор</h3>
+                <p>Вдохновляемся Resident Evil и создаём игры, где сюжет и атмосфера пугают сильнее скримеров. Смотри <strong>The Church of Silence</strong>.</p>
+            </div>
+            <!-- Карточка 3: Про детективные механики (Recognize The Traitor) -->
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-mask"></i></div>
+                <h3>Игры на выживание и дедукцию</h3>
+                <p>Как в <strong>Recognize The Traitor</strong> — все одинаковы, и нужно вычислить предателя среди «близнецов».</p>
+            </div>
+            <!-- Карточка 4: Про сообщество и фидбек -->
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Сообщество игроков</h3>
+                <p>Мы слушаем ваши идеи, тестируем механики вместе и постоянно обновляем проекты по вашим отзывам.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ========== БЛОК 3: ПРОЕКТЫ (ИГРЫ) ========== -->
+    <section id="projects" style="background: #0c1409;">
+        <div class="container">
+            <h2>Наши игры</h2>
+            <div class="section-sub">Проекты, над которыми мы работаем сейчас и концепты будущих игр.</div>
+            <div class="projects-grid">
+                <div class="project-item">
+    <div class="project-img">
+         <a href="https://www.roblox.com/games/93338982728315/Frostvale-RP" target="_blank" 
+         style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+            <img src="images/FrostvaleRP.jpg" alt="Frostvale Role Play">
+        </a>
+    </div>
+    <div class="project-info">
+        <span class="project-badge">В активной разработке</span>
+        <h3>Frostvale Role Play</h3>
+        <p>Ролевая игра в Roblox с уникальной зимней атмосферой, кастомными механиками и дружным сообществом.</p>
+    </div>
+</div>
+                <div class="project-item">
+                    <div class="project-img">
+         <a style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+            <img src="images/The Church of Silence.jpg" alt="The Church of Silence">
+        </a>
+    </div>
+                    <div class="project-info">
+                        <span class="project-badge">Концепт</span>
+                        <h3>The Church of Silence</h3>
+                        <p>Психологический хоррор в стиле Resident Evil, где сюжет оборачивается в старом пригородном городке с очень подозрительной церквью.</p>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-img">
+                    <a style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                    <img src="images/Recognize The Traitor.jpg" alt="Recognize The Traitor">
+                </a>
+            </div>
+                    <div class="project-info">
+                        <span class="project-badge">Концепт</span>
+                        <h3>Recognize The Traitor</h3>
+                        <p>Игра похожая на Murder Mystery 2, но есть одно отличие - все одинаковы как близнецы.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== БЛОК 4: КОМАНДА ========== -->
+    <section id="team">
+        <div class="container">
+            <h2>За кулисами</h2>
+            <div class="section-sub">Человек, который вкладывает душу в каждую строчку кода и каждый элемент игры.</div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fas fa-dragon"></i></div>
+                    <h4>Арсений К.</h4>
+                    <p>Геймдизайнер & Основатель</p>
+                </div>
+    </section>
+
+    <!-- ========== БЛОК 5: КОНТАКТЫ + ФОРМА ========== -->
+    <section id="contact">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+            <div class="section-sub">Есть идея или просто хотите поддержать? Напишите нам!</div>
+            <div class="contact-flex">
+                <div class="contact-info">
+                    <h3>LUNCLIN <span style="color:var(--primary)">Studio</span></h3>
+                    <p>Инди студия из сердца Нижегородской области. Открыты для коллабораций и вопросов.</p>
+                    <div class="contact-details">
+                        <p><i class="fas fa-envelope"></i> 
+                            <a href="mailto:arseniyklipov@gmail.com" 
+                            style="color: inherit; text-decoration: none;">arseniyklipov@gmail.com</a></p>
+                        <p><i class="fab fa-telegram"></i> 
+                            <a href="https://t.me/lunclin" target="_blank" 
+                            style="color: inherit; text-decoration: none;">t.me/lunclin</a></p>
+                        <p><i class="fas fa-map-marker-alt"></i> Балахна / Нижегородская область</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-itch-io"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="input-group">
+                            <input type="text" id="name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group">
+                            <textarea rows="4" id="message" placeholder="Расскажите о вашей идее..."></textarea>
+                        </div>
+                        <button type="submit">Отправить <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                    <p id="formFeedback" style="margin-top: 12px; font-size: 0.85rem;"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ========== ПОДВАЛ ========== -->
+<footer>
+    <div class="container">
+        <p>© 2026 LUNCLIN Indie Studio — создаём игры, которые вдохновляют.</p>
+    </div>
+</footer>
+
+<!-- ========== ПРОСТОЙ СКРИПТ ДЛЯ ФОРМЫ И ПЛАВНОЙ ПРОКРУТКИ ========== -->
+<script>
+    (function() {
+        // 1. Обработка формы: проверка и имитация отправки
+        const form = document.getElementById('contactForm');
+        const feedback = document.getElementById('formFeedback');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const msg = document.getElementById('message').value.trim();
+                if (!name || !email || !msg) {
+                    feedback.innerHTML = '❌ Пожалуйста, заполните все поля.';
+                    feedback.style.color = '#f7b05e';
+                    return;
+                }
+                if (!email.includes('@') || !email.includes('.')) {
+                    feedback.innerHTML = '❌ Введите корректный email.';
+                    feedback.style.color = '#f7b05e';
+                    return;
+                }
+                feedback.innerHTML = `✅ Спасибо, ${name}! Мы свяжемся с вами в ближайшее время. 🌟`;
+                feedback.style.color = '#b3e6a0';
+                form.reset();
+                setTimeout(() => feedback.innerHTML = '', 5000);
+            });
+        }
+
+        // 2. Плавная прокрутка для всех якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === "#") return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    })();
+</script>
+</body>
+</html>
