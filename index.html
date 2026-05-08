@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUNCLIN Studio</title>
+    <link rel="icon" type="png" href="favicon.png">
     <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ========== 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (лёгкая смена цветов) ========== */
+        /* ========== 1. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ========== */
         :root {
-            --primary: #4e8b3b;      /* основной цвет студии */
+            --primary: #4e8b3b;
             --primary-dark: #3a692b;
             --primary-light: #6dab56;
-            --bg-dark: #0b1309;      /* тёмный фон */
-            --card-bg: #171f14;      /* фон карточек */
+            --bg-dark: #0b1309;
+            --card-bg: #171f14;
             --text-light: #f0f7ea;
             --border-color: #2a3623;
         }
@@ -45,7 +47,6 @@
             padding: 100px 0;
         }
 
-        /* Заголовки */
         h2 {
             font-size: 2.8rem;
             font-weight: 600;
@@ -53,7 +54,6 @@
             position: relative;
             display: inline-block;
         }
-        /* Декоративная полоска под h2 */
         h2::after {
             content: '';
             position: absolute;
@@ -101,7 +101,7 @@
             transform: translateY(-2px);
         }
 
-        /* ========== 5. ШАПКА (НАВИГАЦИЯ) ========== */
+        /* ========== 5. ШАПКА ========== */
         header {
             position: sticky;
             top: 0;
@@ -138,7 +138,7 @@
             color: var(--primary-light);
         }
 
-        /* ========== 6. ГЛАВНЫЙ ЭКРАН (HERO) ========== */
+        /* ========== 6. ГЛАВНЫЙ ЭКРАН ========== */
         .hero {
             min-height: 90vh;
             display: flex;
@@ -167,7 +167,7 @@
             flex-wrap: wrap;
         }
 
-        /* ========== 7. КАРТОЧКИ "О НАС" (FEATURES) ========== */
+        /* ========== 7. КАРТОЧКИ "О НАС" ========== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -179,7 +179,7 @@
             padding: 2rem 1.5rem;
             border-radius: 32px;
             border: 1px solid var(--border-color);
-            transition: 0.25s;
+            transition: 0.3s;
         }
         .feature-card:hover {
             transform: translateY(-8px);
@@ -198,7 +198,7 @@
             color: #bbcbb2;
         }
 
-        /* ========== 8. ПРОЕКТЫ / ИГРЫ ========== */
+        /* ========== 8. ПРОЕКТЫ ========== */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -211,27 +211,23 @@
             border: 1px solid #2a3623;
             transition: 0.3s;
         }
-        /* стиль для контейнера иконки/картинки */
-.project-img {
-    height: 220px;
-    background: linear-gradient(135deg, #2f4525, #1b2a14);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 28px 28px 0 0; /* чтобы скругление совпадало с проектом */
-}
-
-/* стиль для картинки внутри */
-.project-img img {
-    max-width: 85%;
-    max-height: 85%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border-radius: 12px;
-    display: block;
-}
-        
+        .project-img {
+            height: 220px;
+            background: linear-gradient(135deg, #2f4525, #1b2a14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 28px 28px 0 0;
+        }
+        .project-img img {
+            max-width: 85%;
+            max-height: 85%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            display: block;
+        }
         .project-info {
             padding: 1.6rem;
         }
@@ -285,7 +281,7 @@
             color: #a6c09b;
         }
 
-        /* ========== 10. КОНТАКТЫ + ФОРМА ========== */
+        /* ========== 10. КОНТАКТЫ ========== */
         .contact-flex {
             display: flex;
             flex-wrap: wrap;
@@ -371,7 +367,18 @@
             font-size: 0.85rem;
         }
 
-        /* ========== 12. АДАПТИВНОСТЬ (ПЛАНШЕТЫ/ТЕЛЕФОНЫ) ========== */
+        /* ========== 12. АНИМАЦИЯ ПРИ СКРОЛЛЕ ========== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== 13. АДАПТИВНОСТЬ ========== */
         @media (max-width: 780px) {
             .navbar {
                 flex-direction: column;
@@ -408,11 +415,11 @@
 </header>
 
 <main>
-    <!-- ========== БЛОК 1: ГЛАВНЫЙ ЭКРАН (HERO) ========== -->
+    <!-- ========== ГЛАВНЫЙ ЭКРАН ========== -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Создаём игры,<br> в которых <span class="accent">оживают эмоции</span></h1>
-            <p>LUNCLIN — молодая инди студия. Мы создаём атмосферные игры, наполненные душой, уникальной механикой и визуальной поэзией.</p>
+            <h1>Делаем игры,<br> которые<span class="accent"> хочется проходить</span></h1>
+            <p>LUNCLIN — небольшая студия, которая создает игры в Roblox и планирует расширяться на другие игровые платформы</p>
             <div class="hero-buttons">
                 <a href="#projects" class="btn btn-primary">Наши проекты</a>
                 <a href="#contact" class="btn btn-outline">Связаться</a>
@@ -420,101 +427,98 @@
         </div>
     </section>
 
-    <!-- ========== БЛОК 2: О СТУДИИ (ОСОБЕННОСТИ) ========== -->
+    <!-- ========== О СТУДИИ ========== -->
     <section id="about">
-    <div class="container">
-        <h2>О нас</h2>
-        <div class="section-sub">LUNCLIN — это молодая студия, которая создаёт атмосферные миры в Roblox и не только.</div>
-        <div class="features-grid">
-            <!-- Карточка 1: Про Roblox и Frostvale RP -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-cog"></i></div>
-                <h3>Roblox-разработка</h3>
-                <p>Мы строим уникальные ролевые вселенные — как <strong>Frostvale RP</strong> с зимней атмосферой и кастомными механиками.</p>
-            </div>
-            <!-- Карточка 2: Про хоррор и атмосферу (The Church of Silence) -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-church"></i></div>
-                <h3>Психологический хоррор</h3>
-                <p>Вдохновляемся Resident Evil и создаём игры, где сюжет и атмосфера пугают сильнее скримеров. Смотри <strong>The Church of Silence</strong>.</p>
-            </div>
-            <!-- Карточка 3: Про детективные механики (Recognize The Traitor) -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-mask"></i></div>
-                <h3>Игры на выживание и дедукцию</h3>
-                <p>Как в <strong>Recognize The Traitor</strong> — все одинаковы, и нужно вычислить предателя среди «близнецов».</p>
-            </div>
-            <!-- Карточка 4: Про сообщество и фидбек -->
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-users"></i></div>
-                <h3>Сообщество игроков</h3>
-                <p>Мы слушаем ваши идеи, тестируем механики вместе и постоянно обновляем проекты по вашим отзывам.</p>
+        <div class="container">
+            <h2>О нас</h2>
+            <div class="section-sub">Мы — инди студия из Нижегородской области. Делаем игры, потому что нравится.</div>
+            <div class="features-grid">
+                <div class="feature-card fade-up">
+                    <div class="feature-icon"><i class="fas fa-cog"></i></div>
+                    <h3>Ролевые игры</h3>
+                    <p><strong>Frostvale RP</strong> с атмосферой старой и родной России.</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <div class="feature-icon"><i class="fas fa-church"></i></div>
+                    <h3>Психологический хоррор</h3>
+                    <p>Вдохновляемся жанром Survival Horror и создаём игры, где сюжет и атмосфера пугают сильнее скримеров. Наш хоррор - <strong>The Church of Silence</strong>.</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <div class="feature-icon"><i class="fas fa-mask"></i></div>
+                    <h3>Игры на выживание и дедукцию</h3>
+                    <p><strong>Recognize The Traitor</strong> - все одинаковы, и нужно вычислить предателя среди совершенно одинаковых игроков.</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <h3>Сообщество игроков</h3>
+                    <p>Мы слушаем ваши идеи и предложения по поводу наших проектов, и поэтому тестируем механики вместе с нашей аудиторией и постоянно обновляем проекты по вашим отзывам.</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-    <!-- ========== БЛОК 3: ПРОЕКТЫ (ИГРЫ) ========== -->
+    <!-- ========== ПРОЕКТЫ ========== -->
     <section id="projects" style="background: #0c1409;">
         <div class="container">
             <h2>Наши игры</h2>
-            <div class="section-sub">Проекты, над которыми мы работаем сейчас и концепты будущих игр.</div>
+            <div class="section-sub">Проекты, над которыми мы работаем сейчас и концепты будущих игр:</div>
             <div class="projects-grid">
-                <div class="project-item">
-    <div class="project-img">
-         <a href="https://www.roblox.com/games/93338982728315/Frostvale-RP" target="_blank" 
-         style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-            <img src="FrostvaleRP.jpg" alt="Frostvale Role Play">
-        </a>
-    </div>
-    <div class="project-info">
-        <span class="project-badge">В активной разработке</span>
-        <h3>Frostvale Role Play</h3>
-        <p>Ролевая игра в Roblox с открытым миром и атмосферой 00-х годов России.</p>
-    </div>
-</div>
-                <div class="project-item">
+                <div class="project-item fade-up">
                     <div class="project-img">
-         <a style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-            <img src="The Church of Silence.jpg" alt="The Church of Silence">
-        </a>
-    </div>
+                        <a href="https://www.roblox.com/games/93338982728315/Frostvale-RP" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <img src="FrostvaleRP.jpg" alt="Frostvale Role Play">
+                        </a>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-badge">В активной разработке</span>
+                        <h3>Frostvale Role Play</h3>
+                        <p>Ролевая игра в Roblox с открытым миром и атмосферой 00-х годов России.</p>
+                    </div>
+                </div>
+                <div class="project-item fade-up">
+                    <div class="project-img">
+                        <a style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <img src="The Church of Silence.jpg" alt="The Church of Silence">
+                        </a>
+                    </div>
                     <div class="project-info">
                         <span class="project-badge">Концепт</span>
                         <h3>The Church of Silence</h3>
-                        <p>Психологический хоррор в стиле Resident Evil, где сюжет оборачивается в старом пригородном городке с очень подозрительной церквью.</p>
+                        <p>Психологический survival horror, где действия происходят в старом городоке северного штата США. И церковь, в которой что-то не так.</p>
                     </div>
                 </div>
-                <div class="project-item">
+                <div class="project-item fade-up">
                     <div class="project-img">
-                    <a style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                    <img src="Recognize The Traitor.jpg" alt="Recognize The Traitor">
-                </a>
-            </div>
+                        <a style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                            <img src="Recognize The Traitor.jpg" alt="Recognize The Traitor">
+                        </a>
+                    </div>
                     <div class="project-info">
                         <span class="project-badge">Концепт</span>
                         <h3>Recognize The Traitor</h3>
-                        <p>Игра похожая на Murder Mystery 2, но есть одно отличие - все одинаковы как близнецы.</p>
+                        <p>Игра похожая на Murder Mystery 2, но все одинаковы как близнецы. Угадай, кто убийца.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== БЛОК 4: КОМАНДА ========== -->
+    <!-- ========== КОМАНДА ========== -->
     <section id="team">
         <div class="container">
             <h2>За кулисами</h2>
-            <div class="section-sub">Человек, который вкладывает душу в каждую строчку кода и каждый элемент игры.</div>
+            <div class="section-sub">Человек, который создает игры от лица студии и вкладывает душу в каждую строчку кода и каждый элемент игры.</div>
             <div class="team-grid">
-                <div class="team-card">
+                <div class="team-card fade-up">
                     <div class="team-avatar"><i class="fas fa-dragon"></i></div>
                     <h4>Арсений К.</h4>
                     <p>Геймдизайнер & Основатель</p>
                 </div>
+            </div>
+        </div>
     </section>
 
-    <!-- ========== БЛОК 5: КОНТАКТЫ + ФОРМА ========== -->
+    <!-- ========== КОНТАКТЫ ========== -->
     <section id="contact">
         <div class="container">
             <h2>Свяжитесь с нами</h2>
@@ -525,11 +529,15 @@
                     <p>Инди студия из сердца Нижегородской области. Открыты для коллабораций и вопросов.</p>
                     <div class="contact-details">
                         <p><i class="fas fa-envelope"></i> 
-                            <a href="mailto:arseniyklipov@gmail.com" 
-                            style="color: inherit; text-decoration: none;">arseniyklipov@gmail.com</a></p>
+                            <a href="mailto:arseniyklipov@gmail.com" style="color: inherit; text-decoration: none;">arseniyklipov@gmail.com</a>
+                        </p>
                         <p><i class="fab fa-telegram"></i> 
-                            <a href="https://t.me/lunclin" target="_blank" 
-                            style="color: inherit; text-decoration: none;">t.me/lunclin</a></p>
+                            <a href="https://t.me/lunclin" target="_blank" style="color: inherit; text-decoration: none;">t.me/lunclin</a>
+                        </p>
+                        <!-- Новая ссылка на Roblox-группу -->
+                        <p><i class="fas fa-users"></i> 
+                            <a href="https://www.roblox.com/communities/35756576/LUNCLIN-Indie-Studio#!/about" target="_blank" style="color: inherit; text-decoration: none;">Группа в Roblox</a>
+                        </p>
                         <p><i class="fas fa-map-marker-alt"></i> Балахна / Нижегородская область</p>
                     </div>
                     <div class="social-links">
@@ -562,14 +570,14 @@
 <!-- ========== ПОДВАЛ ========== -->
 <footer>
     <div class="container">
-        <p>© 2026 LUNCLIN Indie Studio — создаём игры, которые вдохновляют.</p>
+        <p>© 2026 LUNCLIN Indie Studio</p>
     </div>
 </footer>
 
-<!-- ========== ПРОСТОЙ СКРИПТ ДЛЯ ФОРМЫ И ПЛАВНОЙ ПРОКРУТКИ ========== -->
+<!-- ========== СКРИПТЫ ========== -->
 <script>
     (function() {
-        // 1. Обработка формы: проверка и имитация отправки
+        // 1. Обработка формы
         const form = document.getElementById('contactForm');
         const feedback = document.getElementById('formFeedback');
         if (form) {
@@ -595,7 +603,7 @@
             });
         }
 
-        // 2. Плавная прокрутка для всех якорных ссылок
+        // 2. Плавная прокрутка для якорных ссылок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const targetId = this.getAttribute('href');
@@ -607,6 +615,20 @@
                 }
             });
         });
+
+        // 3. Анимация появления при скролле (Intersection Observer)
+        const fadeElements = document.querySelectorAll('.fade-up');
+        if (fadeElements.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // после появления больше не следим
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: "0px 0px -20px 0px" });
+            fadeElements.forEach(el => observer.observe(el));
+        }
     })();
 </script>
 </body>
